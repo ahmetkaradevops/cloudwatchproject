@@ -1,20 +1,19 @@
-resource "aws_cloudwatch_metric_alarm" "high_network_transmit" {
+resource "aws_cloudwatch_metric_alarm" "stop_instance" {
 
-  alarm_name = "Lambda Trigger"
+  alarm_name = "Stop Idle Instance"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = 1
   metric_name = "CPUUtilization"
   namespace = "AWS/EC2"
   statistic = "Average"
-  period = 60
-  threshold = 95
+  period = 60 # should be 45 minutes
+  threshold = 7
   treat_missing_data  = "missing"
   alarm_actions=[
-  "${aws_sns_topic.sns_my_lambda_restart_topic.arn}",
-  "arn:aws:automate:us-east-1:ec2:stop"]
-  depends_on    = [aws_sns_topic.sns_my_lambda_restart_topic
-  ]
+    "${aws_sns_topic.sns_my_lambda_restart_topic.arn}",
+    "arn:aws:automate:us-east-1:ec2:stop"]
+  depends_on    = [aws_sns_topic.sns_my_lambda_restart_topic]
   dimensions = {
-   InstanceId = aws_instance.tf-ec2.id
+    InstanceId = aws_instance.tf-ec2.id
   }
 }
