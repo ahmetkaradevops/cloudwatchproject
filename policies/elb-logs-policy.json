@@ -5,9 +5,8 @@
             "Sid": "",
             "Effect": "Allow",
             "Action": [
-                "elasticloadbalancing:DescribeInstanceHealth",                 
-                "elasticloadbalancing:RegisterInstancesWithLoadBalancer",
-                "elasticloadbalancing:DeregisterInstancesFromLoadBalancer",
+                "elasticloadbalancing:DescribeInstanceHealth",                 "elasticloadbalancing:RegisterInstancesWithLoadBalancer",
+"elasticloadbalancing:DeregisterInstancesFromLoadBalancer",
                 "logs:CreateLogGroup",
                 "logs:CreateLogStream",
                 "logs:PutLogEvents"

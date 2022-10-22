@@ -17,7 +17,7 @@ resource "aws_sns_topic_subscription" "sns_my_lambda_restart_sub" {
 }
 # Policy
 data "template_file" "sqs-policy" {
-  template =  "${file("~/Desktop/try/sqs_policy.json")}"
+  template =  "${file("~/Desktop/try/policies/sqs_policy.json")}"
   vars = {
     sqs_arn = "${aws_sqs_queue.my_lambda_restart_queue.arn}"
     sns_arn = "${aws_sns_topic.sns_my_lambda_restart_topic.arn}"
